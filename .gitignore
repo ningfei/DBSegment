@@ -1,3 +1,5 @@
 /build
+/DBSegment.egg-info
+/dist
 *.pyc
 .DS_Store
