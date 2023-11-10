@@ -17,7 +17,7 @@ setup(
                         "nibabel>=5.1.0",
                         "scipy>=1.10.1",
                         "batchgenerators==0.25",
-                        "torch>=2.0.0",
+                        "torch<2.0.0,>=1.11.0",
                         "tqdm>=4.65.0",
                         "dicom2nifti>=2.3.4",
                         "scikit-image>=0.20.0",
