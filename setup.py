@@ -2,8 +2,12 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-VERSION = '0.1.9'
-DESCRIPTION = 'A deep learnign based method to segment deep brain structures from T1w MRI'
+VERSION = '0.2.2'
+DESCRIPTION = 'A deep learning based method to segment deep brain structures from T1w MRI'
+
+with open('README.md') as f:
+    readme = f.read()
+
 # Setting up
 setup(
       name="DBSegment",
@@ -11,24 +15,17 @@ setup(
       author="Mehri",
       author_email="mehri.baniasadi92@gmail.com",
       description=DESCRIPTION,
+      long_description_content_type="text/markdown",
+      long_description=readme,
       packages=find_packages(),
+      readme="README.md",
       install_requires=[
-                        "numpy>=1.24.2",
-                        "nibabel>=5.1.0",
-                        "scipy>=1.10.1",
-                        "batchgenerators==0.25",
-                        "torch==2.0.1",
-                        "tqdm>=4.65.0",
-                        "dicom2nifti>=2.3.4",
-                        "scikit-image>=0.20.0",
-                        "MedPy==0.4.0",
-                        "scikit-learn>=1.2.2",
-                        "SimpleITK>=2.2.1",
-                        "pandas>=2.0.0",
-                        "requests>=2.28.2 ",
-                        "tifffile>=2023.3.21",
-                        "matplotlib>=3.7.1",
-                        "antspyx>=0.5.3"],
+                        "nibabel==5.2.1",
+                        "scipy==1.13.1",
+                        "torch==2.3.0",
+                        "requests==2.32.2 ",
+                        "antspyx==0.4.2",
+                        "nnunet==1.7.1"],
       entry_points={
       'console_scripts': [
                           "DBSegment = DBSegment.DBSegment:main",
