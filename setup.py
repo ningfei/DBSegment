@@ -28,7 +28,7 @@ setup(
                         "requests>=2.28.2 ",
                         "tifffile>=2023.3.21",
                         "matplotlib>=3.7.1",
-                        "antspyx==0.3.8"],
+                        "antspyx>=0.5.3"],
       entry_points={
       'console_scripts': [
                           "DBSegment = DBSegment.DBSegment:main",
