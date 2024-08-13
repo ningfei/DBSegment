@@ -1,5 +1,10 @@
-/build
-/DBSegment.egg-info
-/dist
-*.pyc
-.DS_Store
+build/
+models/
+input/
+output/
+
+DBSegment/.DS_Store
+Dockerfile copy
+DBSegment.egg-info
+dist/
+
