@@ -24,7 +24,7 @@ setup(
                         "scipy==1.13.1",
                         "torch==2.3.0",
                         "requests==2.32.2 ",
-                        "antspyx==0.4.2",
+                        "antspyx==0.5.3",
                         "nnunet==1.7.1"],
       entry_points={
       'console_scripts': [
