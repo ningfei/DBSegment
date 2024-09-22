@@ -265,14 +265,14 @@ def download_model(parser):
     network_number = args.sub_stn
     if network_number == 0:
         if folds == "None":
-            url = 'https://webdav-r3lab.uni.lu/public/deep_brain_seg/deep_brain_seg_model_2f.zip'
+            url = 'https://filedn.com/lsPIJ4ragTWjjmV6PvlDQLu/data/DBSegmentModels/deep_brain_seg_model_2f.zip'
         else:
-            url = 'https://webdav-r3lab.uni.lu/public/deep_brain_seg/deep_brain_seg_model_7f.zip'
+            url = 'https://filedn.com/lsPIJ4ragTWjjmV6PvlDQLu/data/DBSegmentModels/deep_brain_seg_model_7f.zip'
     elif network_number == 1:
         if folds == "None":
-            url = 'https://webdav-r3lab.uni.lu/public/deep_brain_seg/deep_brain_seg_model_1_2f.zip'
+            url = 'https://filedn.com/lsPIJ4ragTWjjmV6PvlDQLu/data/DBSegmentModels/deep_brain_seg_model_1_2f.zip'
         else:
-            url = 'https://webdav-r3lab.uni.lu/public/deep_brain_seg/deep_brain_seg_model_1_7f.zip'
+            url = 'https://filedn.com/lsPIJ4ragTWjjmV6PvlDQLu/data/DBSegmentModels/deep_brain_seg_model_1_7f.zip'
     else:
         print('Please set the network_number equal to 0 or 1. Other model numbers are not valid.')
 
