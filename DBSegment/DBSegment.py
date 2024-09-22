@@ -37,7 +37,7 @@ def arguments():
                                                                 "The default is v3, it confomrs the input image to orientation LPI (itksnap), 1mm voxel spacing, and 256 dimension.")
 
      parser.add_argument('-f', '--folds', nargs='+', default='None',
-                                            help="folds to use for prediction. Default is Fold 4 adn 6."
+                                            help="folds to use for prediction. Default is fold 4 and 6."
                                             "You can choose any fold between 0 to 6")
 
      parser.add_argument('-n', '--convert_to_native', required=False, default=True, action="store_true",
