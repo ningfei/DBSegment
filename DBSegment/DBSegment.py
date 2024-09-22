@@ -278,9 +278,10 @@ def download_model(parser):
 
     r = requests.get(url, allow_redirects=True)
     model1 = model_path + 'deep_brain_seg_model.zip'
-    open(model1 , 'wb').write(r.content)
-    zip_ref = zipfile.ZipFile(model1 ,"r")
-    zip_ref.extractall(model_path)
+    with open(model1, 'wb') as f:
+        f.write(r.content)
+    with zipfile.ZipFile(model1, "r") as zip_ref:
+        zip_ref.extractall(model_path)
     os.remove(model1)
 
 def inference(parser):
