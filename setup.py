@@ -22,7 +22,7 @@ setup(
       install_requires=[
                         "nibabel==5.2.1",
                         "scipy==1.13.1",
-                        "torch==2.3.0",
+                        "torch>1.10.0",
                         "requests==2.32.2 ",
                         "antspyx==0.5.3",
                         "nnunet==1.7.1"],
