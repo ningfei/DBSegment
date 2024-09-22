@@ -106,14 +106,27 @@ def set_paths(parser):
     args = parser.parse_args()
     model_path = args.model_path
     folds = args.folds
-    if folds == "None":
-        os.environ['nnUNet_raw_data_base']= os.path.join(model_path,'deep_brain_seg_model_2f')
-        os.environ['nnUNet_preprocessed']= os.path.join(model_path,'deep_brain_seg_model_2f/preprocess_nnUNet')
-        os.environ['RESULTS_FOLDER']= os.path.join(model_path,'deep_brain_seg_model_2f/model')
+    network_number = args.sub_stn
+    if network_number == 0:
+        if folds == "None":
+            os.environ['nnUNet_raw_data_base']= os.path.join(model_path,'deep_brain_seg_model_2f')
+            os.environ['nnUNet_preprocessed']= os.path.join(model_path,'deep_brain_seg_model_2f/preprocess_nnUNet')
+            os.environ['RESULTS_FOLDER']= os.path.join(model_path,'deep_brain_seg_model_2f/model')
+        else:
+            os.environ['nnUNet_raw_data_base']= os.path.join(model_path,'deep_brain_seg_model_7f')
+            os.environ['nnUNet_preprocessed']= os.path.join(model_path,'deep_brain_seg_model_7f/preprocess_nnUNet')
+            os.environ['RESULTS_FOLDER']= os.path.join(model_path,'deep_brain_seg_model_7f/model')
+    elif network_number == 1:
+        if folds == "None":
+            os.environ['nnUNet_raw_data_base']= os.path.join(model_path,'deep_brain_seg_model_1_2f')
+            os.environ['nnUNet_preprocessed']= os.path.join(model_path,'deep_brain_seg_model_1_2f/preprocess_nnUNet')
+            os.environ['RESULTS_FOLDER']= os.path.join(model_path,'deep_brain_seg_model_1_2f/model')
+        else:
+            os.environ['nnUNet_raw_data_base']= os.path.join(model_path,'deep_brain_seg_model_1_7f')
+            os.environ['nnUNet_preprocessed']= os.path.join(model_path,'deep_brain_seg_model_1_7f/preprocess_nnUNet')
+            os.environ['RESULTS_FOLDER']= os.path.join(model_path,'deep_brain_seg_model_1_7f/model')
     else:
-        os.environ['nnUNet_raw_data_base']= os.path.join(model_path,'deep_brain_seg_model_7f')
-        os.environ['nnUNet_preprocessed']= os.path.join(model_path,'deep_brain_seg_model_7f/preprocess_nnUNet')
-        os.environ['RESULTS_FOLDER']= os.path.join(model_path,'deep_brain_seg_model_7f/model')
+        print('Please set the network_number equal to 0 or 1. Other model numbers are not valid.')
 
 parser = arguments()
 set_paths(parser)
@@ -262,12 +275,6 @@ def download_model(parser):
             url = 'https://webdav-r3lab.uni.lu/public/deep_brain_seg/deep_brain_seg_model_1_7f.zip'
     else:
         print('Please set the network_number equal to 0 or 1. Other model numbers are not valid.')
-
-
-    #if folds == "None":
-    #   url = 'https://webdav-r3lab.uni.lu/public/deep_brain_seg/deep_brain_seg_model_2f.zip'
-    #else:
-    #   url = 'https://webdav-r3lab.uni.lu/public/deep_brain_seg/deep_brain_seg_model_7f.zip'
 
     r = requests.get(url, allow_redirects=True)
     model1 = model_path + 'deep_brain_seg_model.zip'
@@ -487,21 +494,21 @@ def main_infer():
     network_number = args.sub_stn
     if network_number == 0:
         model_path_second_part = 'model/nnUNet/3d_fullres/Task054_Mri/nnUNetTrainerV2__nnUNetPlansv2.1'
+        if folds == "None":
+            model_file = os.path.join(model_path, 'deep_brain_seg_model_2f',model_path_second_part)
+        else:
+            model_file = os.path.join(model_path, 'deep_brain_seg_model_7f',model_path_second_part)
     else:
         model_path_second_part = 'model/nnUNet/3d_fullres/Task062_Mri/nnUNetTrainerV2__nnUNetPlansv2.1'
-    if folds == "None":
-      model_file = os.path.join(model_path, 'deep_brain_seg_model_2f',model_path_second_part)
-      if not os.path.exists(model_file):
-         print('Downloading the model. The model is 900MB, it might take a while.')
-         download_model(parser)
-      elif os.path.exists(model_file):
-        print('Model exists.')
-    else:
-      model_file = os.path.join(model_path, 'deep_brain_seg_model_7f', model_path_second_part)
-      if not os.path.exists(model_file):
-         print('Downloading the model. The model is 3GB, it might take a while.')
-         download_model(parser)
-      elif os.path.exists(model_file):
+        if folds == "None":
+            model_file = os.path.join(model_path, 'deep_brain_seg_model_1_2f',model_path_second_part)
+        else:
+            model_file = os.path.join(model_path, 'deep_brain_seg_model_1_7f',model_path_second_part)
+
+    if not os.path.exists(model_file):
+        print('Downloading the model. It might take a while.')
+        download_model(parser)
+    elif os.path.exists(model_file):
         print('Model exists.')
 
     print('Segmenting.')
