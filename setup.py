@@ -26,6 +26,7 @@ setup(
                         "torch>1.10.0,<2.0",
                         "requests==2.32.2 ",
                         "antspyx==0.5.3",
+                        "pathos>=0.3.2",
                         "nnunet>=1.7.0"],
       entry_points={
       'console_scripts': [
